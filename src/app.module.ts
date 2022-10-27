@@ -8,10 +8,12 @@ import appConfig            from '@infrastructure/config/environment/app.config'
 import databaseConfig       from '@infrastructure/config/environment/database.config';
 import authConfig           from '@infrastructure/config/environment/auth.config';
 
-import { DomainModule } from '@domain/domain.module';
+import { DomainModule }  from '@domain/domain.module';
+import { ProjectModule } from '@modules/project/project.module';
 
-import { AppController } from './app.controller';
-import { AppService }    from './app.service';
+import { AppController }    from './app.controller';
+import { AppService }       from './app.service';
+import clientRegisterConfig from '@infrastructure/config/environment/client-register.config';
 
 const envFilePath: string = getEnvPath(`${ __dirname }/envs`);
 
@@ -20,11 +22,12 @@ const envFilePath: string = getEnvPath(`${ __dirname }/envs`);
     ConfigModule.forRoot({
       envFilePath,
       isGlobal: true,
-      load: [appConfig, databaseConfig, authConfig]
+      load: [appConfig, databaseConfig, authConfig, clientRegisterConfig]
     }),
     LoggerModule,
     ExceptionsModule,
-    DomainModule
+    DomainModule,
+    ProjectModule
   ],
   controllers: [AppController],
   providers: [AppService],
