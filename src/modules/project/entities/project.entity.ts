@@ -12,6 +12,12 @@ export class Project extends BaseEntity {
   @Column({name: 'description', type: 'varchar', length: 255, nullable: false})
   description: string;
 
+  @Column({name: 'is_active', type: 'boolean', default: true})
+  isActive: boolean;
+
+  @Column({name: 'owner', type: 'uuid'})
+  owner: string;
+
   /* TODO: Generate ENUM with all possible values
   @Column({name: 'status', type: 'varchar', length: 255, nullable: false})
   status: string;
