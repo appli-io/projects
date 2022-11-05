@@ -1,4 +1,15 @@
-import { BaseEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, Index, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  Index,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+}               from 'typeorm';
+import { Epic } from '@modules/epic/entities/epic.entity';
 
 @Entity({name: 'project'})
 export class Project extends BaseEntity {
@@ -43,4 +54,7 @@ export class Project extends BaseEntity {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @OneToMany(() => Epic, (epic) => epic.project)
+  epic: Epic[];
 }

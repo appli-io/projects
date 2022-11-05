@@ -5,15 +5,14 @@ import {
   DeleteDateColumn,
   Entity,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn
-}                  from 'typeorm';
-import { Project } from '@modules/project/entities/project.entity';
-import { Task }    from '@modules/task/entities/task.entity';
+}               from 'typeorm';
+import { Epic } from '@modules/epic/entities/epic.entity';
 
 @Entity()
-export class Epic extends BaseEntity {
+export class Task extends BaseEntity {
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -35,10 +34,10 @@ export class Epic extends BaseEntity {
   @Column({name: 'date-end', type: 'date', nullable: false})
   dateEnd: Date;
 
-  @Column({name: 'reference-code', type: 'varchar', length: 255, nullable: false})
+  @Column({name: 'reference-code', type: 'varchar', length: 255, nullable: true})
   referenceCode: string;
 
-  @Column({name: 'reference-url', type: 'varchar', length: 255, nullable: false})
+  @Column({name: 'reference-url', type: 'varchar', length: 255, nullable: true})
   referenceUrl: string;
 
   @CreateDateColumn()
@@ -50,11 +49,6 @@ export class Epic extends BaseEntity {
   @DeleteDateColumn()
   deleteAt: Date;
 
-  @ManyToOne(() => Project, (project) => project.id)
-  project: Project;
-
-  @OneToMany(() => Task, (task) => task.epic)
-  task: Task[];
-
+  @ManyToOne(() => Epic, (epic) => epic.id)
+  epic: Epic;
 }
-

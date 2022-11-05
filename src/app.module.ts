@@ -10,6 +10,7 @@ import authConfig           from '@infrastructure/config/environment/auth.config
 
 import { DomainModule }  from '@domain/domain.module';
 import { ProjectModule } from '@modules/project/project.module';
+import { TaskModule }    from '@modules/task/task.module';
 import { EpicModule }    from '@modules/epic/epic.module';
 
 import { AppController }    from './app.controller';
@@ -29,7 +30,8 @@ const envFilePath: string = getEnvPath(`${ __dirname }/envs`);
     ExceptionsModule,
     DomainModule,
     ProjectModule,
-    EpicModule
+    EpicModule,
+    TaskModule
   ],
   controllers: [AppController],
   providers: [AppService],

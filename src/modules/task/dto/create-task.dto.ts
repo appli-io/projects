@@ -1,6 +1,6 @@
 import { IsDate, IsNotEmpty, IsOptional, IsString, IsUUID, MaxLength, MinLength } from 'class-validator';
 
-export class CreateEpicDto {
+export class CreateTaskDto {
 
   @IsString()
   @IsNotEmpty()
@@ -31,5 +31,6 @@ export class CreateEpicDto {
 
   @IsUUID()
   @IsNotEmpty()
-  project: string;
+  epicId: string;
+
 }
